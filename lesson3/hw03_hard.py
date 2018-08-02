@@ -32,7 +32,7 @@ with open('C:\\Users\\Артем\\Desktop\\lesson03\\home_work\\data\\hours_of',
 for i in zp.keys():
     if i in hours.keys():
         zp.update({i: zp[i] + hours[i]})
-
+fot = 0
 for i in zp.keys():
     if zp[i][0] == 'Зарплата':
         continue
@@ -46,8 +46,10 @@ for i in zp.keys():
             obshaya_zp = round(norma_zp + abs(norma_chasov - virabotka) * 2 * norma_zp / norma_chasov, 2)
         else:
             obshaya_zp = norma_zp
+    fot += obshaya_zp
     zp.update({i: zp[i] + [obshaya_zp]})
 print(zp)
+print(fot)
 # Задание-3:
 # Дан файл ("data/fruits") со списком фруктов.
 # Записать в новые файлы все фрукты, начинающиеся с определенной буквы.
