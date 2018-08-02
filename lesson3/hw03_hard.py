@@ -31,10 +31,24 @@
 # Подсказка:
 # Чтобы получить список больших букв русского алфавита:
 # print(list(map(chr, range(ord('А'), ord('Я')+1))))
-b = []
-with open('C:\\Users\\Артем\\Desktop\\lesson03\\home_work\\data\\fruits.txt') as doc:
+dop_list = []
+with open('C:\\Users\\Артем\\Desktop\\lesson03\\home_work\\data\\fruits.txt', encoding="utf-8") as doc:
     for i in doc:
-        b += i.strip()
-a_z = list(map(chr, range(ord('А'), ord('Я')+1))) + list(map(chr, range(ord('a'), ord('я')+1)))
+        if i.strip() == '':
+            pass
+        else:
+            dop_list.append(i.strip())
+a_z = list(map(chr, range(ord('А'), ord('Я')+1)))
+print(dop_list)
+
 for i in a_z:
-    for j in 
+    fruits_w = []
+    for fruit in dop_list:
+        if fruit[0] == i:
+            fruits_w.append(fruit)
+    my_file = open(f'C:\\Users\\Артем\\Desktop\\lesson03\\home_work\\data\\fruits_{i}.txt', 'w')
+    for fruit in fruits_w:
+        my_file.write(fruit + '\n')
+    my_file.close()
+        
+        
