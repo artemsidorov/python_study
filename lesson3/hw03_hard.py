@@ -17,8 +17,37 @@
 # то их ЗП уменьшается пропорционально, а за заждый час переработки
 # они получают удвоенную ЗП, пропорциональную норме.
 # Кол-во часов, которые были отработаны, указаны в файле "data/hours_of"
+zp = {}
+hours = {}
+with open('C:\\Users\\Артем\\Desktop\\lesson03\\home_work\\data\\workers', encoding="utf-8") as doc:
+    for i in doc:
+        data = i.strip().split()
+        zp[str(data[0]) +' ' + str(data[1])] = [data[i] for i in range(2, len(data))]
 
+with open('C:\\Users\\Артем\\Desktop\\lesson03\\home_work\\data\\hours_of', encoding="utf-8") as doc:
+    for i in doc:
+        data = i.strip().split()
+        hours[str(data[0]) +' ' + str(data[1])] = [data[2]]
 
+for i in zp.keys():
+    if i in hours.keys():
+        zp.update({i: zp[i] + hours[i]})
+
+for i in zp.keys():
+    if zp[i][0] == 'Зарплата':
+        continue
+    else:
+        norma_zp = int(zp[i][0])
+        norma_chasov = int(zp[i][2])
+        virabotka = int(zp[i][3])
+        if norma_chasov > virabotka:
+            obshaya_zp = round(norma_zp - (norma_chasov - virabotka) * norma_zp / norma_chasov, 2)
+        elif norma_chasov < virabotka:
+            obshaya_zp = round(norma_zp + abs(norma_chasov - virabotka) * 2 * norma_zp / norma_chasov, 2)
+        else:
+            obshaya_zp = norma_zp
+    zp.update({i: zp[i] + [obshaya_zp]})
+print(zp)
 # Задание-3:
 # Дан файл ("data/fruits") со списком фруктов.
 # Записать в новые файлы все фрукты, начинающиеся с определенной буквы.
@@ -31,6 +60,7 @@
 # Подсказка:
 # Чтобы получить список больших букв русского алфавита:
 # print(list(map(chr, range(ord('А'), ord('Я')+1))))
+'''
 dop_list = []
 with open('C:\\Users\\Артем\\Desktop\\lesson03\\home_work\\data\\fruits.txt', encoding="utf-8") as doc:
     for i in doc:
@@ -49,5 +79,5 @@ for i in a_z:
     for fruit in fruits_w:
         my_file.write(fruit + '\n')
     my_file.close()
-        
+'''      
         
