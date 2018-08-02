@@ -39,7 +39,6 @@ with open('C:\\Users\\Артем\\Desktop\\lesson03\\home_work\\data\\fruits.txt
         else:
             dop_list.append(i.strip())
 a_z = list(map(chr, range(ord('А'), ord('Я')+1)))
-print(dop_list)
 
 for i in a_z:
     fruits_w = []
