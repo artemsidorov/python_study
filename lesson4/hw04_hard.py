@@ -67,3 +67,19 @@ print(f'Подстрока: {elem}, Смещение строки: {fst}')
 # Программа получает на вход восемь пар чисел,
 # каждое число от 1 до 8 — координаты 8 ферзей.
 # Если ферзи не бьют друг друга, выведите слово NO, иначе выведите YES.
+board = [int(i) for i in input('Координаты ферзей').split()]
+ferz = 8
+y = []
+x = []
+for i in range(len(board)):
+    if i % 2 == 0:
+        x.append(board[i])
+    else:
+        y.append(board[i])
+
+non_cross = True
+for fst in range(ferz):
+    for snd in range(fst + 1, ferz):
+        if x[fst] == x[snd] or y[snd] == y[fst] or abs(x[fst] - x[snd]) == abs(y[fst] - y[snd]):
+            non_cross = False
+print('No' if non_cross == True else 'Yes')
